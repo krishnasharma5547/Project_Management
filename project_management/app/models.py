@@ -13,7 +13,7 @@ class TODO(models.Model):
     ('C', 'COMPLETED'),
     ('P', 'PENDING'),
     ]
-    priority_choices = [
+    members_choices = [
     ('1', '1️⃣'),
     ('2', '2️⃣'),
     ('3', '3️⃣'),
@@ -29,4 +29,5 @@ class TODO(models.Model):
     status = models.CharField(max_length=2 , choices=status_choices)
     user  = models.ForeignKey(User  , on_delete= models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    priority = models.CharField(max_length=2 , choices=priority_choices)
+    members = models.CharField(max_length=2 , choices=members_choices)
+    ldate = models.DateField(null=True,blank=True)

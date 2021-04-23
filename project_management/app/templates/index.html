@@ -10,7 +10,25 @@
     color: white;
     font-weight: 700;
   }
+  #id_title{
+    width:160px;
+    margin-left:12%;
+  }
+  #id_status{
+width:160px;
+margin-left:8%;
+  }
+  #id_members{
+width:160px;
+margin-left:1%
+  }
+  #id_ldate{
+width:160px;
+margin-left:2rem;
+  }
 </style>
+
+
 
 <div>
   <div class="container pt-4">
@@ -54,8 +72,9 @@
                   <th>#</th>
                   <th>Title</th>
                   <th>Status</th>
-                  <th>Priority</th>
+                  <th>Members</th>
                   <th>Action</th>
+                  <th>Last Date</th>
                 </tr>
               </thead>
 
@@ -72,7 +91,7 @@
                     🕒
                     {%endif%}
                   </td>
-                  <td>{{todo.priority}}</td>
+                  <td>{{todo.members}}</td>
                   <td>
                     <a href="/delete-todo/{{todo.id}}" title="Delete" class="">🗑️</a>
                     {% if todo.status == 'P'%}
@@ -81,10 +100,9 @@
                     <a href="/change-status/{{todo.id}}/P" title="Mark Pending" class="">🕒</a>
                     {%endif%}
                   </td>
+                  <td>{{todo.ldate}}</td>
                 </tr>
                 {%endfor%}
-
-
               </tbody>
             </table>
           </div>
@@ -95,4 +113,9 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+    document.getElementById('id_ldate').type = 'date';
+</script>
+
 {% endblock %}

@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 # Create your views here.
 from app.forms import TODOForm
 from app.models import TODO
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 
@@ -58,6 +59,7 @@ def signup(request):
             user = form.save()
             print(user)
             if user is not None:
+                messages.success(request, "Account created Successfully" )
                 return redirect('login')
         else:
             return render(request , 'signup.html' , context=context)
@@ -76,6 +78,7 @@ def add_todo(request):
             todo.user = user
             todo.save()
             print(todo)
+            messages.success(request, "Task added Successfully" )
             return redirect("home")
         else: 
             return render(request , 'index.html' , context={'form' : form})
@@ -84,6 +87,7 @@ def add_todo(request):
 def delete_todo(request , id ):
     print(id)
     TODO.objects.get(pk = id).delete()
+    messages.success(request, "Task deleted Successfully" )
     return redirect('home')
 
 def change_todo(request , id  , status):
@@ -100,3 +104,6 @@ def signout(request):
 
 def about(request):
     return render(request, "about.html")
+
+def contact(request):
+    return render(request, "contact.html")

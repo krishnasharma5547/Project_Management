@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path
-from app.views import home , login , signup , add_todo , signout , delete_todo, change_todo,about
+from app.views import home , login , signup , add_todo , signout , delete_todo, change_todo,about,contact
 
 
 urlpatterns = [
@@ -13,4 +13,5 @@ urlpatterns = [
    path('change-status/<int:id>/<str:status>' , change_todo ), 
    path('logout/' , signout ), 
    path('about/', about),
+   path('contact/', contact),
 ]

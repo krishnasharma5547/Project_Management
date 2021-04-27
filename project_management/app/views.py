@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate , login as loginUser , logout
 from django.contrib.auth.forms import UserCreationForm , AuthenticationForm
 # Create your views here.
 from app.forms import TODOForm
-from app.models import TODO
+from app.models import TODO, Contact
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
@@ -106,4 +106,15 @@ def about(request):
     return render(request, "about.html")
 
 def contact(request):
-    return render(request, "contact.html")
+    if request.method == 'GET':
+        if request.user.is_authenticated:
+            cname = request.POST.get('cname')
+            text = request.POST.get('text')
+            ins = Contact(cname = cname, text = text)
+            ins.save()
+            messages.success(request, 'Your Response Submitted Successfully')
+            return render(request, "contact.html")
+        else:
+            messages.error(request,'Please login before contact!')
+            return render(request, "login.html")
+    return render(request, 'contact.html')

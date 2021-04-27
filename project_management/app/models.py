@@ -31,3 +31,8 @@ class TODO(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     members = models.CharField(max_length=2 , choices=members_choices)
     ldate = models.DateField(null=True,blank=True)
+
+
+class Contact(models.Model):
+    cname = models.CharField(max_length=30,blank=True,null=True)
+    text = models.CharField(max_length=250,blank=True,null=True)
